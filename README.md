@@ -1,4 +1,43 @@
-# Taking a course about system analysis (strategic and tactical DDD).
+Taking a course about system analysis (strategic and tactical DDD).
+
+- [Week 1: event storming and data modeling](#week-1-event-storming-and-data-modeling)
+  * [Event Storming modeling, looking for contexts](#event-storming-modeling-looking-for-contexts)
+  * [Data model and communications](#data-model-and-communications)
+  * [Project implementation](#project-implementation)
+    + [Components](#components)
+    + [Communications](#communications)
+    + [Data storage](#data-storage)
+  * [Controversial/critical points](#controversialcritical-points)
+- [Week 2: strategic DDD](#week-2-strategic-ddd)
+  * [Domain and subdomains](#domain-and-subdomains)
+    + [Core subdomains](#core-subdomains)
+    + [Supporting subdomains](#supporting-subdomains)
+    + [Generic subdomains](#generic-subdomains)
+  * [Bounded-contexts](#bounded-contexts)
+  * [Updating Event Storming and Data Model by DDD findings](#updating-event-storming-and-data-model-by-ddd-findings)
+  * [Characteristics and architecture style](#characteristics-and-architecture-style)
+  * [Result: architecture](#result-architecture)
+- [Week 3: stakeholders, characteristics, conditions and limitations](#week-3-stakeholders-characteristics-conditions-and-limitations)
+  * [Stakeholders research](#stakeholders-research)
+  * [Choosing architecture style (context analysis)](#choosing-architecture-style-context-analysis)
+  * [Found limitations and conditions](#found-limitations-and-conditions)
+  * [Characteristics from the previous iteration (week 2)](#characteristics-from-the-previous-iteration-week-2)
+  * [Characteristics found in the current iteration](#characteristics-found-in-the-current-iteration)
+  * [Characteristics - result](#characteristics---result)
+  * [Decomposition to services (subsystems)](#decomposition-to-services-subsystems)
+  * [Choosing an architecture style and DB type for each service (subsystem)](#choosing-an-architecture-style-and-db-type-for-each-service-subsystem)
+  * [Choosing appropriate communication style and type](#choosing-appropriate-communication-style-and-type)
+  * [Verification and fitness-functions](#verification-and-fitness-functions)
+  * [Sample ADR](#sample-adr)
+    + [ADR-00X: Isolation of “worker hiring” context to the standalone service](#adr-00x-isolation-of-worker-hiring-context-to-the-standalone-service)
+- [Week 4: architecture rework planning](#week-4-architecture-rework-planning)
+  * [Step 1](#step-1)
+  * [Step 2](#step-2)
+  * [Step 3](#step-3)
+  * [Step 4.1 adding new service “management betting”](#step-41-adding-new-service-management-betting)
+  * [Step 4.2 adding a new service with the two contexts "service execution" and "service preparation"](#step-42-adding-a-new-service-with-the-two-contexts-service-execution-and-service-preparation)
+  * [Step 4.3 adding two new service for money-related processes instead of a single "accounting and billing"](#step-43-adding-two-new-service-for-money-related-processes-instead-of-a-single-accounting-and-billing)
+  * [Result](#result)
 
 # Week 1: event storming and data modeling
 
@@ -110,7 +149,7 @@
 
 ![hw2_domains.png](./resources/hw2_domains.png)
 
-### Core поддомены
+### Core subdomains
 
 Обнаружил три Core поддомена:
 
@@ -147,7 +186,7 @@ Model compl выше, чем у “клиент и обеспечение усл
 > запрашивает клиент, поэтому оставил этот домен в Core.
 >
 
-### Supporting поддомены
+### Supporting subdomains
 
 Обнаружил 4 Supporting поддомена:
 
@@ -175,7 +214,7 @@ Model compl выше, чем у “клиент и обеспечение усл
 бизнеса у него высока, т.к. именно через контроль качества происходит оценка успешности метчинга, что является важным
 для бизнеса на старте *(это предположение необходимо верифицировать с бизнесом).*
 
-### Generic поддомены
+### Generic subdomains
 
 Обнаружил 1 generic поддомен - “ставки для менеджеров”
 
@@ -183,7 +222,7 @@ Model compl выше, чем у “клиент и обеспечение усл
 на повышение эффективности менеджеров, которых в компании немного. Его “сложность” (model compl) так же видится низкой,
 т.к. это хорошо известный механизм ставок.
 
-## Bounded-контексты
+## Bounded-contexts
 
 ![hw2_bc.png](./resources/hw2_bc.png)
 
@@ -220,7 +259,7 @@ Model compl выше, чем у “клиент и обеспечение усл
 
 ![hw2_context_comparison.png](./resources/hw2_context_comparison.png)
 
-## Обновление ES и DM по результатам DDD
+## Updating Event Storming and Data Model by DDD findings
 
 ### Как изменились контексты
 
@@ -245,7 +284,7 @@ Model compl выше, чем у “клиент и обеспечение усл
 Из плюсов отметил, что в общих чертах DM модель стала проще, стало меньше связей между контекстами. Из минусов - домен
 “прием и выполнение услуги” выглядит “монструозным” из-за связей с другими контекстами.
 
-## Характеристики и выбор архитектурного стиля
+## Characteristics and architecture style
 
 | Характеристика  | Важность для проекта                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -278,7 +317,7 @@ Model compl выше, чем у “клиент и обеспечение усл
 перегрузить систему и людей проблемами микросервисного подхода: коммуникации между сервисами, observability, debugging и
 т.д.
 
-## Результат: архитектура
+## Result: architecture
 
 ![hw2_arch.png](./resources/hw2_arch.png)
 
