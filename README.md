@@ -4,4 +4,4 @@
 
 ## [Week 2: strategic DDD](./week2/content.md)
 
-## [Week 3: event storming and data modeling](./week2/content.md)
+## [Week 3: stakeholders, characteristics, conditions and limitations](./week3/content.md)
