@@ -1,5 +1,8 @@
 Taking a course about system analysis (strategic and tactical DDD).
 
+![ilia_liferov_system_analysis_course_cert_en](https://github.com/iliferov/system-analysis-course/assets/18546754/30cdecae-79b2-49f8-be9c-61131ab414ce)
+
+
 - [Week 1: event storming and data modeling](#week-1-event-storming-and-data-modeling)
   * [Event Storming modeling, looking for contexts](#event-storming-modeling-looking-for-contexts)
   * [Data model and communications](#data-model-and-communications)
